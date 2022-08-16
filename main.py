@@ -1,15 +1,43 @@
+distance = mbit_Sensor.ultrasonic(DigitalPin.P14, DigitalPin.P15)
+speed = 90
+mbit_Robot.car_ctrl_speed(mbit_Robot.CarState.CAR_RUN, speed)
+basic.pause(4000)
+basic.pause(500)
+mbit_Robot.car_ctrl_speed(mbit_Robot.CarState.CAR_LEFT, speed)
+basic.pause(500)
+mbit_Robot.car_ctrl_speed(mbit_Robot.CarState.CAR_RUN, speed)
+basic.pause(10000)
+basic.pause(4000)
+mbit_Robot.car_ctrl_speed(mbit_Robot.CarState.CAR_RIGHT, speed)
+basic.pause(500)
+mbit_Robot.car_ctrl_speed(mbit_Robot.CarState.CAR_RUN, speed)
+basic.pause(3000)
+mbit_Robot.car_ctrl_speed(mbit_Robot.CarState.CAR_RIGHT, speed)
+basic.pause(500)
+mbit_Robot.car_ctrl_speed(mbit_Robot.CarState.CAR_RUN, speed)
+basic.pause(2000)
+mbit_Robot.car_ctrl_speed(mbit_Robot.CarState.CAR_LEFT, speed)
+basic.pause(500)
+mbit_Robot.car_ctrl_speed(mbit_Robot.CarState.CAR_RUN, speed)
+basic.pause(3000)
+mbit_Robot.car_ctrl_speed(mbit_Robot.CarState.CAR_LEFT, speed)
+basic.pause(500)
+mbit_Robot.car_ctrl_speed(mbit_Robot.CarState.CAR_RUN, speed)
+basic.pause(2000)
+mbit_Robot.car_ctrl(mbit_Robot.CarState.CAR_STOP)
+
 def on_forever():
-    if mbit_Robot.Line_Sensor(mbit_Robot.enPos.LEFT_STATE, mbit_Robot.enLineState.WHITE) and mbit_Robot.Line_Sensor(mbit_Robot.enPos.RIGHT_STATE, mbit_Robot.enLineState.WHITE):
-        mbit_Robot.car_ctrl_speed(mbit_Robot.CarState.CAR_RUN, 60)
-    elif mbit_Robot.Line_Sensor(mbit_Robot.enPos.LEFT_STATE, mbit_Robot.enLineState.WHITE) and mbit_Robot.Line_Sensor(mbit_Robot.enPos.RIGHT_STATE, mbit_Robot.enLineState.BLACK):
-        mbit_Robot.car_ctrl_speed(mbit_Robot.CarState.CAR_SPINRIGHT, 70)
-    elif mbit_Robot.Line_Sensor(mbit_Robot.enPos.LEFT_STATE, mbit_Robot.enLineState.BLACK) and mbit_Robot.Line_Sensor(mbit_Robot.enPos.RIGHT_STATE, mbit_Robot.enLineState.WHITE):
-        mbit_Robot.car_ctrl_speed(mbit_Robot.CarState.CAR_SPINLEFT, 70)
-    elif mbit_Robot.Line_Sensor(mbit_Robot.enPos.LEFT_STATE, mbit_Robot.enLineState.BLACK) and mbit_Robot.Line_Sensor(mbit_Robot.enPos.RIGHT_STATE, mbit_Robot.enLineState.BLACK):
-        mbit_Robot.car_ctrl(mbit_Robot.CarState.CAR_STOP)
-        mbit_Display.RGB2(DigitalPin.P0,
-            DigitalPin.P0,
-            DigitalPin.P0,
-            mbit_Display.enColor.RED)
-        basic.pause(5000)
+    pass
 basic.forever(on_forever)
+
+def on_forever2():
+    huskylens.request()
+    if huskylens.is_appear(1, HUSKYLENSResultType_t.HUSKYLENS_RESULT_BLOCK):
+        basic.show_icon(IconNames.HEART)
+    elif huskylens.is_appear(2, HUSKYLENSResultType_t.HUSKYLENS_RESULT_BLOCK):
+        basic.show_icon(IconNames.SMALL_HEART)
+basic.forever(on_forever2)
+
+def on_forever3():
+    pass
+basic.forever(on_forever3)
